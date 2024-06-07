@@ -41,6 +41,7 @@ public class Menu {
         System.out.println();
     }
 
+    // le o arquivo CSV "funcionarios" e cria as instancias de usuarios
     public void criarUsuarios() {
         Scanner scanner;  
         File csvFile = new File("funcionarios.csv");
@@ -56,12 +57,17 @@ public class Menu {
             String token1 = tokens[0]; //nome
             String token2 = tokens[1]; //departamento
 
+            Usuario usuario;
+
             // instancia usuarios com tokens como atributos;
-            Usuario usuario = new Usuario(token1, token2);
-            
+            if (token2.equals("Administrador")) {
+                usuario = new Administrador(token1, token2);
+            } else {
+                usuario = new Funcionario(token1, token2);
+            }
+
             usuarios.addUsuario(usuario);
          }
-
            scanner.close();
     
         } catch (FileNotFoundException e) {
