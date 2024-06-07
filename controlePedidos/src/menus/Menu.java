@@ -1,33 +1,36 @@
 package menus;
 
 import models.usuarios.funcionarios.Funcionario;
-import models.usuarios.funcionarios.FuncionariosControl;
+// import models.usuarios.funcionarios.FuncionariosControl;
+import models.usuarios.administradores.Administrador;
+import models.usuarios.UsuariosControl;
+import models.usuarios.Usuario;
 
 public class Menu {
-    private FuncionariosControl funcionariado;
-    public static void main(String[] args) {
-        Menu teste = new Menu();
-        teste.clearConsole();
-        teste.showLogo();
-        teste.showOptions();
-        teste.showTodosFuncionarios();
-    }
+    // private FuncionariosControl funcionariado;
+    private UsuariosControl usuarios;
 
     public Menu() {
-        funcionariado = new FuncionariosControl();
+        // funcionariado = new FuncionariosControl();
+        usuarios = new UsuariosControl();
     }
 
     public void showTodosFuncionarios() {
-        Funcionario testador = new Funcionario("testador");
-        funcionariado.addFuncionario(testador);
+        Usuario testador = new Funcionario("testador", "almoxarifado");
+        Usuario adm = new Administrador("adm", "almoxarifado");
+
+        usuarios.addUsuario(adm);
+        usuarios.addUsuario(testador);
+
         System.out.println("Mostrando todos funcionaros:");
         int indexCount = 0;
-        for (Funcionario f : funcionariado.getTodosFuncionarios()) {
+        for (Usuario f : usuarios.getTodosUsuarios()) {
             StringBuilder builder = new StringBuilder("[");
             builder.append(indexCount);
             builder.append("] ");
             builder.append(f.toString());
             System.out.println(builder.toString());
+            indexCount++;
         }
 
         System.out.println();

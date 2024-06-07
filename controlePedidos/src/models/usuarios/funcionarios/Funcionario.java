@@ -1,12 +1,12 @@
 package models.usuarios.funcionarios;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 import models.usuarios.Usuario;
 
 public class Funcionario extends Usuario {
-    public Funcionario(String nome) {
-        super(nome);
+    public Funcionario(String nome, String departamento) {
+        super(nome, departamento);
     }
 
     @Override
@@ -16,6 +16,8 @@ public class Funcionario extends Usuario {
         builder.append(this.getNome());
         builder.append(" | Tipo: ");
         builder.append("Funcionario");
+        builder.append(" | Departamento: ");
+        builder.append(this.getDepartamento());
         return builder.toString();
     }
 }

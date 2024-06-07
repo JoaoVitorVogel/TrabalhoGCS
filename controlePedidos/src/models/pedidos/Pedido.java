@@ -3,14 +3,16 @@ package models.pedidos;
 import java.util.ArrayList;
 import java.util.Date;
 
-import models.usuarios.funcionarios.Funcionario;
+import models.usuarios.Usuario;
+// import models.usuarios.funcionarios.Funcionario;
 
 public class Pedido {
     private Date data_pedido;
     private Date data_conclusao;
     private StatusPedido status;
     private double valor_total; 
-    private Funcionario funcionario;
+    // private Funcionario funcionario;
+    private Usuario usuario;
     private ArrayList<Item> itens;
 
     public Pedido(
@@ -19,13 +21,15 @@ public class Pedido {
         StatusPedido status, 
         double valor_total,
         // departamento??
-        Funcionario funcionario
+        // Funcionario funcionario
+        Usuario usuario
         ) {
             this.data_pedido = data_pedido;
             this.data_conclusao = data_conclusao;
             this.status = status;
             this.valor_total = valor_total;
-            this.funcionario = funcionario;
+            // this.funcionario = funcionario;
+            this.usuario = usuario;
             this.itens = new ArrayList<Item>();
             // departamento
         }
@@ -42,7 +46,8 @@ public class Pedido {
 
     public void setStatus(StatusPedido newStatus) { this.status = newStatus; }
 
-    public Funcionario getFuncionario() { return this.funcionario; }
+    // public Funcionario getFuncionario() { return this.funcionario; }
+    public Usuario getUsuario() { return this.usuario; }
 
     public void addItem(Item item) { itens.add(item); }
 
