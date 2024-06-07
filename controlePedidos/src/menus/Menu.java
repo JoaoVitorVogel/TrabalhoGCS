@@ -1,21 +1,24 @@
 package menus;
 
-import models.usuarios.funcionarios.Funcionario;
+import models.*;
 // import models.usuarios.funcionarios.FuncionariosControl;
-import models.usuarios.administradores.Administrador;
-import models.usuarios.UsuariosControl;
-import models.usuarios.Usuario;
 
+import models.pedidos.*;
+import models.usuarios.*;
+import models.usuarios.administradores.*;
+import models.usuarios.funcionarios.*;
 import java.io.*;
 import java.util.Scanner;
 
 public class Menu {
     // private FuncionariosControl funcionariado;
     private UsuariosControl usuarios;
+    private DepartamentosControl departamentos;
 
     public Menu() {
         // funcionariado = new FuncionariosControl();
         usuarios = new UsuariosControl();
+        departamentos = new DepartamentosControl();
     }
 
     public void showTodosFuncionarios() {
@@ -67,6 +70,32 @@ public class Menu {
             }
 
             usuarios.addUsuario(usuario);
+         }
+           scanner.close();
+    
+        } catch (FileNotFoundException e) {
+          e.printStackTrace();
+        }
+    }
+
+    public void criarDepartamentos() {
+        Scanner scanner;  
+        File csvFile = new File("departamentos.csv");
+        try {
+          scanner = new Scanner(csvFile);
+        
+          // leitura das linhas
+          while (scanner.hasNextLine()) {
+
+            String line = scanner.nextLine();
+            String[] tokens = line.split(","); // nomeDep , valorMax
+
+            String token1 = tokens[0]; //nome Departamento
+            Double token2 = Double.valueOf(tokens[1]); //valorMax pedidos
+
+            Departamento departamento = new Departamento(token1, token2);
+
+            departamentos.addDepartamento(departamento);
          }
            scanner.close();
     
