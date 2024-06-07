@@ -6,6 +6,7 @@ public class App {
         teste.clearConsole();
         teste.showLogo();
         teste.showOptions();
+        teste.criarUsuarios();
         teste.showTodosFuncionarios();
     }
 }
