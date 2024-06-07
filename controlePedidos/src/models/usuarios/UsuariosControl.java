@@ -12,9 +12,9 @@ public class UsuariosControl {
       return this.todosUsuarios;
   }
 
-  public Usuario addUsuario(Usuario f) {
-      this.todosUsuarios.add(f);
-      return f;
+  public Usuario addUsuario(Usuario u) {
+      this.todosUsuarios.add(u);
+      return u;
   }
   
   public Usuario removeUsuario(Usuario u) {

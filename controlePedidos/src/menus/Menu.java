@@ -1,8 +1,5 @@
 package menus;
 
-import models.*;
-// import models.usuarios.funcionarios.FuncionariosControl;
-
 import models.pedidos.*;
 import models.usuarios.*;
 import models.usuarios.administradores.*;
@@ -11,30 +8,29 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Menu {
-    // private FuncionariosControl funcionariado;
+    private FuncionariosControl funcionarios;
+    private AdministradoresControl administradores;
     private UsuariosControl usuarios;
     private DepartamentosControl departamentos;
 
     public Menu() {
-        // funcionariado = new FuncionariosControl();
+        funcionarios = new FuncionariosControl();
         usuarios = new UsuariosControl();
         departamentos = new DepartamentosControl();
+        administradores = new AdministradoresControl();
+
+        this.criarUsuarios();
+        this.criarDepartamentos();
     }
 
-    public void showTodosFuncionarios() {
-        // Usuario testador = new Funcionario("testador", "almoxarifado");
-        // Usuario adm = new Administrador("adm", "almoxarifado");
-
-        // usuarios.addUsuario(adm);
-        // usuarios.addUsuario(testador);
-
-        System.out.println("Mostrando todos funcionaros:");
+    public void showTodosUsuarios() {
+        System.out.println("Mostrando todos usuarios:");
         int indexCount = 0;
-        for (Usuario f : usuarios.getTodosUsuarios()) {
+        for (Usuario u : usuarios.getTodosUsuarios()) {
             StringBuilder builder = new StringBuilder("[");
             builder.append(indexCount);
             builder.append("] ");
-            builder.append(f.toString());
+            builder.append(u.toString());
             System.out.println(builder.toString());
             indexCount++;
         }
@@ -42,6 +38,62 @@ public class Menu {
         System.out.println();
         System.out.println("Selecione um funcionario pelo numero ou digite 0 para sair: ");
         System.out.println();
+    }
+
+    public void showTodosAdministradores() {
+        // System.out.println("Mostrando todos administradores:");
+        // int indexCount = 0;
+        // for (Administrador a : administradores.getTodosAdministradores()) {
+        //     StringBuilder builder = new StringBuilder("[");
+        //     builder.append(indexCount);
+        //     builder.append("] ");
+        //     builder.append(a.toString());
+        //     System.out.println(builder.toString());
+        //     indexCount++;
+        // }
+    }
+
+    public void showTodosFuncionarios() {
+        // System.out.println("Mostrando todos funcionarios:");
+        // int indexCount = 0;
+        // for (Funcionario f : funcionarios.getTodosFuncionarios()) {
+        //     StringBuilder builder = new StringBuilder("[");
+        //     builder.append(indexCount);
+        //     builder.append("] ");
+        //     builder.append(f.toString());
+        //     System.out.println(builder.toString());
+        //     indexCount++;
+        // }
+    }
+
+    public void showDepartamentos() {
+
+    }
+
+    public void showPedidos() {
+
+    }
+
+    public void verificarOpcao(int opcao) {
+        switch (opcao) {
+            case 0:
+                break;
+            case 1:
+                // this.clearConsole();
+                this.showTodosFuncionarios();
+            case 2:
+                // this.clearConsole();
+                this.showTodosAdministradores();
+            case 3:
+                // this.clearConsole();
+                this.showTodosUsuarios();
+            case 4:
+                // this.clearConsole();
+                this.showDepartamentos();
+            case 5:
+                // this.clearConsole();
+                this.showPedidos();
+        }
     }
 
     // le o arquivo CSV "funcionarios" e cria as instancias de usuarios
