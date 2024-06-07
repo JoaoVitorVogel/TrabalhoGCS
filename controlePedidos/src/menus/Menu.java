@@ -35,4 +35,17 @@ public class Menu {
         System.out.println();
 
     }
+
+    public void showOptions() {
+        System.out.println("\n[1] Mostrar todos funcionarios");
+        System.out.println("[2] Mostrar todos administradores");
+        System.out.println("[3] Mostrar todos usuarios");
+        System.out.println("[4] Ver departamentos");
+        System.out.println("[5] Ver pedidos");
+
+        System.out.println();
+        System.out.println("[0] Sair da aplicacao\n");
+    }
+
+
 }
