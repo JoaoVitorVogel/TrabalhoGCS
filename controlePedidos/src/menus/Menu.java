@@ -7,9 +7,9 @@ public class Menu {
     private FuncionariosControl funcionariado;
     public static void main(String[] args) {
         Menu teste = new Menu();
-        // teste.clearConsole();
-        // teste.showLogo();
-        // teste.showOptions();
+        teste.clearConsole();
+        teste.showLogo();
+        teste.showOptions();
         teste.showTodosFuncionarios();
     }
 
