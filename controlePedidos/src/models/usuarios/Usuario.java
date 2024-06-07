@@ -19,18 +19,18 @@ public class Usuario {
         return this.nome;
     }
 
-    public String getDepartamento() {
-        return this.departamento;
-    }
-
     public void setNome(String newNome) {
         this.nome = newNome;
+    }
+
+    public String getDepartamento() {
+        return this.departamento;
     }
 
     public int getId() {
         return this.id;
     }
-
+    
     private void setId() {
         if (usuarios_gerados == null) usuarios_gerados = new ArrayList<>();
         int newId = usuarios_gerados.size();
