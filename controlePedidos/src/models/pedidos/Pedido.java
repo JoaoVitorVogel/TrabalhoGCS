@@ -7,6 +7,9 @@ import models.usuarios.Usuario;
 import models.usuarios.funcionarios.Funcionario;
 
 public class Pedido {
+    private static int contadorId = 1;
+
+    private int id;
     private Date data_pedido;
     private Date data_conclusao;
     private StatusPedido status;
@@ -26,6 +29,7 @@ public class Pedido {
         Usuario solicitante,
         ArrayList<Item> itens
         ) {
+            this.id = contadorId++;
             this.data_pedido = data_pedido;
             this.data_conclusao = data_conclusao;
             this.status = status;
@@ -37,6 +41,9 @@ public class Pedido {
             
         }
 
+
+    public int getId() { return id; }
+    
     public Date getDataPedido() { return this.data_pedido; }
 
     public void setDataPedido(Date data_pedido) { this.data_pedido = data_pedido; }
