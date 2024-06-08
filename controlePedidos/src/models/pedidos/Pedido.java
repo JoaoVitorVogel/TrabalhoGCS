@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import models.usuarios.Usuario;
-// import models.usuarios.funcionarios.Funcionario;
+import models.usuarios.funcionarios.Funcionario;
 
 public class Pedido {
     private Date data_pedido;
     private Date data_conclusao;
     private StatusPedido status;
     private double valor_total; 
-    // private Funcionario funcionario;
-    private Usuario usuario;
+    private Departamento departamento;
+    private Funcionario funcionario;
+    private Usuario solicitante;
     private ArrayList<Item> itens;
 
     public Pedido(
@@ -20,18 +21,20 @@ public class Pedido {
         Date data_conclusao, 
         StatusPedido status, 
         double valor_total,
-        // departamento??
-        // Funcionario funcionario
-        Usuario usuario
+        Departamento departamento,
+        Funcionario funcionario,
+        Usuario solicitante,
+        ArrayList<Item> itens
         ) {
             this.data_pedido = data_pedido;
             this.data_conclusao = data_conclusao;
             this.status = status;
             this.valor_total = valor_total;
-            // this.funcionario = funcionario;
-            this.usuario = usuario;
-            this.itens = new ArrayList<Item>();
-            // departamento
+            this.departamento = departamento;
+            this.funcionario = funcionario;
+            this.solicitante = solicitante;
+            this.itens = itens;
+            
         }
 
     public Date getDataPedido() { return this.data_pedido; }
@@ -46,12 +49,13 @@ public class Pedido {
 
     public void setStatus(StatusPedido newStatus) { this.status = newStatus; }
 
-    // public Funcionario getFuncionario() { return this.funcionario; }
-    public Usuario getUsuario() { return this.usuario; }
+    public Funcionario getFuncionario() { return this.funcionario; }
+    
+    public Usuario getSolicitante() { return this.solicitante; }
 
     public void addItem(Item item) { itens.add(item); }
 
-    private void atualiza_valor_total() {
+    private void atualizaValorTotal() {
         if (itens.size() == 0 || itens == null) {
             this.valor_total = 0;
         } else {
@@ -63,7 +67,11 @@ public class Pedido {
     }
 
     public double getValorTotal() {
-        atualiza_valor_total();
+        atualizaValorTotal();
         return this.valor_total;
+    }
+
+    public Departamento getDepartamento() {
+        return departamento;
     }
 }
