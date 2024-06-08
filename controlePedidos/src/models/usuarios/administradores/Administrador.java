@@ -2,13 +2,13 @@ package models.usuarios.administradores;
 
 // import java.util.ArrayList;
 
-import models.usuarios.Usuario;
+import models.usuarios.*;
 
 public class Administrador extends Usuario {
     // ArrayList<Administrador> administradores_gerados;
     
     public Administrador(String nome, String departamento) {
-        super(nome, departamento);
+        super(nome, departamento, TipoUsuario.ADMINISTRADOR);
         // if (administradores_gerados.size() <= 0) administradores_gerados = new ArrayList<>();
         // administradores_gerados.add(this);
     }
