@@ -2,6 +2,7 @@ package models.pedidos;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import models.usuarios.Usuario;
 import models.usuarios.funcionarios.Funcionario;
@@ -43,7 +44,7 @@ public class Pedido {
 
 
     public int getId() { return id; }
-    
+
     public Date getDataPedido() { return this.data_pedido; }
 
     public void setDataPedido(Date data_pedido) { this.data_pedido = data_pedido; }
@@ -73,12 +74,13 @@ public class Pedido {
 
     }
 
+    public List<Item> getItens() { return itens; }
+
     public double getValorTotal() {
         atualizaValorTotal();
         return this.valor_total;
     }
 
-    public Departamento getDepartamento() {
-        return departamento;
-    }
+    public Departamento getDepartamento() { return departamento; }
+    
 }
