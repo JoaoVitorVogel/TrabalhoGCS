@@ -8,16 +8,12 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Menu {
-    private FuncionariosControl funcionarios;
-    private AdministradoresControl administradores;
     private UsuariosControl usuarios;
     private DepartamentosControl departamentos;
 
     public Menu() {
-        funcionarios = new FuncionariosControl();
         usuarios = new UsuariosControl();
         departamentos = new DepartamentosControl();
-        administradores = new AdministradoresControl();
 
         this.criarUsuarios();
         this.criarDepartamentos();
@@ -25,7 +21,7 @@ public class Menu {
 
     public void showTodosUsuarios() {
         System.out.println("Mostrando todos usuarios:");
-        int indexCount = 0;
+        int indexCount = 1;
         for (Usuario u : usuarios.getTodosUsuarios()) {
             StringBuilder builder = new StringBuilder("[");
             builder.append(indexCount);
@@ -36,34 +32,42 @@ public class Menu {
         }
 
         System.out.println();
-        System.out.println("Selecione um funcionario pelo numero ou digite 0 para sair: ");
+        System.out.println("Selecione um usuario ou digite 0 para sair: ");
         System.out.println();
     }
 
     public void showTodosAdministradores() {
-        // System.out.println("Mostrando todos administradores:");
-        // int indexCount = 0;
-        // for (Administrador a : administradores.getTodosAdministradores()) {
-        //     StringBuilder builder = new StringBuilder("[");
-        //     builder.append(indexCount);
-        //     builder.append("] ");
-        //     builder.append(a.toString());
-        //     System.out.println(builder.toString());
-        //     indexCount++;
-        // }
+        System.out.println("Mostrando todos administradores:");
+        int indexCount = 0;
+        for (Usuario a : usuarios.getAdministradores()) {
+            StringBuilder builder = new StringBuilder("[");
+            builder.append(indexCount);
+            builder.append("] ");
+            builder.append(a.toString());
+            System.out.println(builder.toString());
+            indexCount++;
+        }
+
+        System.out.println();
+        System.out.println("Selecione um administrador ou digite 0 para sair: ");
+        System.out.println();
     }
 
     public void showTodosFuncionarios() {
-        // System.out.println("Mostrando todos funcionarios:");
-        // int indexCount = 0;
-        // for (Funcionario f : funcionarios.getTodosFuncionarios()) {
-        //     StringBuilder builder = new StringBuilder("[");
-        //     builder.append(indexCount);
-        //     builder.append("] ");
-        //     builder.append(f.toString());
-        //     System.out.println(builder.toString());
-        //     indexCount++;
-        // }
+        System.out.println("Mostrando todos funcionarios:");
+        int indexCount = 1;
+        for (Usuario u : usuarios.getFuncionarios()) {
+            StringBuilder builder = new StringBuilder("[");
+            builder.append(indexCount);
+            builder.append("] ");
+            builder.append(u.toString());
+            System.out.println(builder.toString());
+            indexCount++;
+        }
+
+        System.out.println();
+        System.out.println("Selecione um funcionario ou digite 0 para sair: ");
+        System.out.println();
     }
 
     public void showDepartamentos() {
@@ -72,28 +76,6 @@ public class Menu {
 
     public void showPedidos() {
 
-    }
-
-    public void verificarOpcao(int opcao) {
-        switch (opcao) {
-            case 0:
-                break;
-            case 1:
-                // this.clearConsole();
-                this.showTodosFuncionarios();
-            case 2:
-                // this.clearConsole();
-                this.showTodosAdministradores();
-            case 3:
-                // this.clearConsole();
-                this.showTodosUsuarios();
-            case 4:
-                // this.clearConsole();
-                this.showDepartamentos();
-            case 5:
-                // this.clearConsole();
-                this.showPedidos();
-        }
     }
 
     // le o arquivo CSV "funcionarios" e cria as instancias de usuarios
@@ -117,6 +99,7 @@ public class Menu {
             // instancia usuarios com tokens como atributos;
             if (token2.equals("Administrador")) {
                 usuario = new Administrador(token1, token2);
+
             } else {
                 usuario = new Funcionario(token1, token2);
             }
@@ -181,7 +164,7 @@ public class Menu {
     }
 
     public void clearConsole() {
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();  
+        //System.out.print("\033[H\033[2J");  
+        //System.out.flush();  
     }
 }

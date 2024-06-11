@@ -13,7 +13,7 @@ public class AdministradoresControl {
         return this.todosAdministradores;
     }
 
-    public Administrador addFuncionario(Administrador a) {
+    public Administrador addAdministrador(Administrador a) {
         this.todosAdministradores.add(a);
         return a;
     }
