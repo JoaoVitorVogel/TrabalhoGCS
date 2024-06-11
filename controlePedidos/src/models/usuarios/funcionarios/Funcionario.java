@@ -5,6 +5,7 @@ import models.usuarios.TipoUsuario;
 // import java.util.ArrayList;
 
 import models.usuarios.Usuario;
+import models.usuarios.TipoUsuario;
 
 public class Funcionario extends Usuario {
     public Funcionario(String nome, String departamento) {
