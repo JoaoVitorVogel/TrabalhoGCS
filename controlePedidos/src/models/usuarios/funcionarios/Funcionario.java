@@ -6,7 +6,7 @@ import models.usuarios.Usuario;
 
 public class Funcionario extends Usuario {
     public Funcionario(String nome, String departamento) {
-        super(nome, departamento);
+        super(nome, departamento, TipoUsuario.ADMINISTRADOR);
     }
 
     @Override

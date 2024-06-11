@@ -10,7 +10,7 @@ public class Item {
         this.descricao = descricao;
         this.quantidade = quantidade;
         this.valor_un = valor_un;
-        atualiza_valor_total();
+        atualizaValorTotal();
     }
 
     public String getDescricao() { return this.descricao; }
@@ -21,24 +21,24 @@ public class Item {
 
     public void setQuantidade(int newQuantidade) { 
         this.quantidade = newQuantidade; 
-        atualiza_valor_total(); 
+        atualizaValorTotal(); 
     }
 
     public void addQuantidade(int valorToAdd) {
         this.quantidade += valorToAdd;
-        atualiza_valor_total();
+        atualizaValorTotal();
      }
 
     public double getValorUn() { return this.valor_un; }
 
     public void setValorUn(double newValorUn) {
         this.valor_un = newValorUn;
-        atualiza_valor_total();
+        atualizaValorTotal();
     }
 
     public double getValorTotal() { return this.valor_total; }
 
-    private void atualiza_valor_total() {
+    private void atualizaValorTotal() {
         this.valor_total = this.quantidade * this.valor_un;
     }
     

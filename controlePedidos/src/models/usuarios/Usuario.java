@@ -8,11 +8,14 @@ public class Usuario {
 
     protected String nome;
     protected String departamento;
+    private TipoUsuario tipo;
 
-    public Usuario(String nome, String departamento) {
+
+    public Usuario(String nome, String departamento, TipoUsuario tipo) {
         setId();
         this.nome = nome;
         this.departamento = departamento;
+        this.tipo = tipo;
     }
 
     public String getNome() {
@@ -36,6 +39,10 @@ public class Usuario {
         int newId = usuarios_gerados.size();
         this.id = newId;
         usuarios_gerados.add(this);
+    }
+
+    public TipoUsuario getTipo() {
+        return tipo;
     }
 }
 
