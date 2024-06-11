@@ -71,7 +71,16 @@ public class Menu {
     }
 
     public void showDepartamentos() {
-
+        System.out.println("Mostrando todos departamentos:");
+        int indexCount = 1;
+        for (Departamento d : departamentos.getTodosDepartamentos()) {
+            StringBuilder builder = new StringBuilder("[");
+            builder.append(indexCount);
+            builder.append("] ");
+            builder.append(d.toString());
+            System.out.println(builder.toString());
+            indexCount++;
+        }
     }
 
     public void showPedidos() {
