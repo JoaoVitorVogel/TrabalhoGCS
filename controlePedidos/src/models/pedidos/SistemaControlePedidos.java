@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import models.pedidos.Pedido;
-import models.usuarios.Usuario;
+import models.usuarios.*;
 import models.usuarios.funcionarios.Funcionario;
 
 public class SistemaControlePedidos {
@@ -96,38 +95,8 @@ public class SistemaControlePedidos {
         }
         return pedidosAbertos;
     }
-
     public EstatisticasPedidos gerarEstatisticas() {
-        long totalPedidos = pedidos.size();
-        long pedidosAprovados = 0;
-        long pedidosReprovados = 0;
-        long pedidosUltimos30Dias = 0;
-        double valorTotalUltimos30Dias = 0;
-
-        Date dataLimite = new Date(System.currentTimeMillis() - 30L * 24 * 60 * 60 * 1000);
-
-        for (Pedido pedido : pedidos) {
-            if (pedido.getStatus() == StatusPedido.APROVADO) {
-                pedidosAprovados++;
-            } else if (pedido.getStatus() == StatusPedido.REPROVADO) {
-                pedidosReprovados++;
-            }
-            if (pedido.getDataPedido().after(dataLimite)) {
-                pedidosUltimos30Dias++;
-                valorTotalUltimos30Dias += pedido.getValorTotal();
-            }
-        }
-
-        double valorMedioUltimos30Dias = pedidosUltimos30Dias > 0 ? valorTotalUltimos30Dias / pedidosUltimos30Dias : 0;
-
-        Pedido pedidoMaiorValorAberto = null;
-        for (Pedido pedido : listarPedidosAbertos()) {
-            if (pedidoMaiorValorAberto == null || pedido.getValorTotal() > pedidoMaiorValorAberto.getValorTotal()) {
-                pedidoMaiorValorAberto = pedido;
-            }
-        }
-
-        return new EstatisticasPedidos(totalPedidos, pedidosAprovados, pedidosReprovados, pedidosUltimos30Dias,
-                valorMedioUltimos30Dias, valorTotalUltimos30Dias, pedidoMaiorValorAberto);
+        return new EstatisticasPedidos(pedidos);
     }
+
 }
