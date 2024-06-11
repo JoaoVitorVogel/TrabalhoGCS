@@ -99,4 +99,8 @@ public class SistemaControlePedidos {
         return new EstatisticasPedidos(pedidos);
     }
 
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
 }

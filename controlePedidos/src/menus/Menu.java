@@ -10,10 +10,12 @@ import java.util.Scanner;
 public class Menu {
     private UsuariosControl usuarios;
     private DepartamentosControl departamentos;
+    private SistemaControlePedidos pedidos;
 
     public Menu() {
         usuarios = new UsuariosControl();
         departamentos = new DepartamentosControl();
+        pedidos = new SistemaControlePedidos();
 
         this.criarUsuarios();
         this.criarDepartamentos();
@@ -84,7 +86,16 @@ public class Menu {
     }
 
     public void showPedidos() {
-
+        System.out.println("Mostrando todos pedidos:");
+        int indexCount = 1;
+        for (Pedido p : pedidos.getPedidos()) {
+            StringBuilder builder = new StringBuilder("[");
+            builder.append(indexCount);
+            builder.append("] ");
+            builder.append(p.toString());
+            System.out.println(builder.toString());
+            indexCount++;
+        }
     }
 
     // le o arquivo CSV "funcionarios" e cria as instancias de usuarios
