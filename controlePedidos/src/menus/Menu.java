@@ -11,7 +11,6 @@ public class Menu {
     private UsuariosControl usuarios;
     private DepartamentosControl departamentos;
     private SistemaControlePedidos pedidos;
-    @SuppressWarnings("unused")
     private Usuario usuarioLogado;
 
     public Menu() {
