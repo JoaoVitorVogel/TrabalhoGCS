@@ -13,7 +13,8 @@ public class App {
         while (opcaoSelecionada != 0) {
                 
             menu.showLogo();
-            menu.showOptions();
+            System.out.println("[1] Mostrar todos usuarios\n");
+            System.out.println("[0] Sair da aplicacao\n");
 
             opcaoSelecionada = leitorInput.nextInt();
             System.out.println("Você escolheu a opção: " + opcaoSelecionada);
@@ -23,19 +24,13 @@ public class App {
                     System.out.println("Programa encerrado.");
                     break;
                 case 1:
-                    menu.showTodosFuncionarios();
-                    break;
-                case 2:
-                    menu.showTodosAdministradores();
-                    break;
-                case 3:
                     menu.showTodosUsuarios();
-                    break;
-                case 4:
-                    menu.showDepartamentos();
-                    break;
-                case 5:
-                    menu.showPedidos();
+                    opcaoSelecionada = leitorInput.nextInt();
+                    System.out.println("Você escolheu a opção: " + opcaoSelecionada);
+                    if(opcaoSelecionada == 0){
+                        break;
+                    }
+                    menu.selectUsuario(opcaoSelecionada);
                     break;
             } 
         }  

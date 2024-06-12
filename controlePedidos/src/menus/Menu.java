@@ -11,14 +11,30 @@ public class Menu {
     private UsuariosControl usuarios;
     private DepartamentosControl departamentos;
     private SistemaControlePedidos pedidos;
+    @SuppressWarnings("unused")
+    private Usuario usuarioLogado;
 
     public Menu() {
         usuarios = new UsuariosControl();
         departamentos = new DepartamentosControl();
         pedidos = new SistemaControlePedidos();
+        usuarioLogado = new Usuario(null, null, null);
 
         this.criarUsuarios();
         this.criarDepartamentos();
+    }
+
+    public void selectUsuario(int numeroSelecionado){
+        int indexCount = 1;
+        for (Usuario u : usuarios.getTodosUsuarios()) {
+            if(numeroSelecionado == indexCount){
+                usuarioLogado = u;
+            }
+            indexCount++;
+        }
+
+        System.out.println("Usuario logado: ");
+        System.out.println(usuarioLogado.toString());
     }
 
     public void showTodosUsuarios() {
@@ -159,16 +175,6 @@ public class Menu {
         }
     }
 
-    public void showOptions() {
-        System.out.println("\n[1] Mostrar todos funcionarios");
-        System.out.println("[2] Mostrar todos administradores");
-        System.out.println("[3] Mostrar todos usuarios");
-        System.out.println("[4] Ver departamentos");
-        System.out.println("[5] Ver pedidos");
-        System.out.println();
-        System.out.println("[0] Sair da aplicacao\n");
-    }
-
     public void showLogo() {
         System.out.println("\r\n" + //
                         "░▒▓██████████████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓███████▓▒░░▒▓███████▓▒░  \r\n" + //
@@ -182,9 +188,4 @@ public class Menu {
                         "                                                                          \r\n" + //
                         "");
     }
-
-    // public void clearConsole() {
-    //     System.out.print("\033[H\033[2J");  
-    //     System.out.flush();  
-    // }
 }
