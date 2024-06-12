@@ -2,16 +2,18 @@ package models.usuarios;
 
 import java.util.ArrayList;
 
+import models.pedidos.Departamento;
+
 public class Usuario {
     private ArrayList<Usuario> usuarios_gerados;
     private int id;
 
     protected String nome;
-    protected String departamento;
+    protected Departamento departamento;
     private TipoUsuario tipo;
 
 
-    public Usuario(String nome, String departamento, TipoUsuario tipo) {
+    public Usuario(String nome, Departamento departamento, TipoUsuario tipo) {
         setId();
         this.nome = nome;
         this.departamento = departamento;
@@ -26,7 +28,7 @@ public class Usuario {
         this.nome = newNome;
     }
 
-    public String getDepartamento() {
+    public Departamento getDepartamento() {
         return this.departamento;
     }
 

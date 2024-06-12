@@ -1,5 +1,6 @@
 package models.usuarios.funcionarios;
 
+import models.pedidos.Departamento;
 import models.usuarios.TipoUsuario;
 
 // import java.util.ArrayList;
@@ -7,7 +8,7 @@ import models.usuarios.TipoUsuario;
 import models.usuarios.Usuario;
 
 public class Funcionario extends Usuario {
-    public Funcionario(String nome, String departamento) {
+    public Funcionario(String nome, Departamento departamento) {
         super(nome, departamento, TipoUsuario.ADMINISTRADOR);
     }
 

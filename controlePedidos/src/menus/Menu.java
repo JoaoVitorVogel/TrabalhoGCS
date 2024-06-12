@@ -6,6 +6,7 @@ import models.usuarios.administradores.*;
 import models.usuarios.funcionarios.*;
 import java.io.*;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Menu {
     private UsuariosControl usuarios;
@@ -14,13 +15,14 @@ public class Menu {
     private Usuario usuarioLogado;
 
     public Menu() {
-        usuarios = new UsuariosControl();
         departamentos = new DepartamentosControl();
+        usuarios = new UsuariosControl();
         pedidos = new SistemaControlePedidos();
         usuarioLogado = new Usuario(null, null, null);
 
-        this.criarUsuarios();
+        
         this.criarDepartamentos();
+        this.criarUsuarios();
     }
 
     public void selectUsuario(int numeroSelecionado){
@@ -34,6 +36,12 @@ public class Menu {
 
         System.out.println("Usuario logado: ");
         System.out.println(usuarioLogado.toString());
+    }
+
+    public void cadastraPedido(double valor, ArrayList<Item> itens){
+
+        pedidos.registrarPedido(valor, usuarioLogado.getDepartamento(), usuarioLogado, itens);
+
     }
 
     public void showTodosUsuarios() {
@@ -102,14 +110,9 @@ public class Menu {
 
     public void showPedidos() {
         System.out.println("Mostrando todos pedidos:");
-        int indexCount = 1;
+
         for (Pedido p : pedidos.getPedidos()) {
-            StringBuilder builder = new StringBuilder("[");
-            builder.append(indexCount);
-            builder.append("] ");
-            builder.append(p.toString());
-            System.out.println(builder.toString());
-            indexCount++;
+            System.out.println(p.toString());
         }
     }
 
@@ -129,18 +132,24 @@ public class Menu {
             String token1 = tokens[0]; //nome
             String token2 = tokens[1]; //departamento
 
+            Departamento selectedDepartamento = departamentos.getDepartamentoByName(token2);
+
+            Double valor = selectedDepartamento.getValorMax();
+
+            Departamento departamento = new Departamento(token2, valor);
+
             Usuario usuario;
 
             // instancia usuarios com tokens como atributos;
             if (token2.equals("Administrador")) {
-                usuario = new Administrador(token1, token2);
+                usuario = new Administrador(token1, departamento);
 
             } else {
-                usuario = new Funcionario(token1, token2);
+                usuario = new Funcionario(token1, departamento);
             }
 
             usuarios.addUsuario(usuario);
-         }
+        }
            scanner.close();
     
         } catch (FileNotFoundException e) {
