@@ -12,8 +12,6 @@ public class App {
 
         while (opcaoSelecionada != 0) {
                 
-            
-            menu.clearConsole();
             menu.showLogo();
             menu.showOptions();
 

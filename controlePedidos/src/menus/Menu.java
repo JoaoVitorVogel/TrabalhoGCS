@@ -183,8 +183,8 @@ public class Menu {
                         "");
     }
 
-    public void clearConsole() {
-        //System.out.print("\033[H\033[2J");  
-        //System.out.flush();  
-    }
+    // public void clearConsole() {
+    //     System.out.print("\033[H\033[2J");  
+    //     System.out.flush();  
+    // }
 }
