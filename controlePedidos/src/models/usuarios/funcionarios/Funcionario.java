@@ -1,5 +1,7 @@
 package models.usuarios.funcionarios;
 
+import models.usuarios.TipoUsuario;
+
 // import java.util.ArrayList;
 
 import models.usuarios.Usuario;

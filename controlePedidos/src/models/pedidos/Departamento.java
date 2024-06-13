@@ -16,4 +16,9 @@ public class Departamento {
   public Double getValorMax() {
     return this.valorMax;
   }
+
+  @Override
+  public String toString() {
+    return "Departamento [ Nome: " + nome + ", Valor Max: " + valorMax + " ]";
+  }
 }
