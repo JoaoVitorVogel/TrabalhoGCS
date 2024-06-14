@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import models.usuarios.*;
-import models.usuarios.funcionarios.Funcionario;
 
 public class SistemaControlePedidos {
     private List<Pedido> pedidos;
@@ -15,15 +14,12 @@ public class SistemaControlePedidos {
     }
 
     public void registrarPedido(
-        Date data_pedido, 
-        Date data_conclusao, 
-        StatusPedido status, 
         double valor_total,
         Departamento departamento,
-        Funcionario funcionario,
         Usuario solicitante, 
-        ArrayList<Item> itens) {
-        Pedido novoPedido = new Pedido(new Date(), new Date(), status, valor_total, departamento, funcionario, solicitante, itens);
+        ArrayList<Item> itens) 
+        {
+        Pedido novoPedido = new Pedido(new Date(), null, StatusPedido.ABERTO, valor_total, departamento, solicitante, itens);
         pedidos.add(novoPedido);
     }
 

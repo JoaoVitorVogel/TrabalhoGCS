@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import models.usuarios.Usuario;
-import models.usuarios.funcionarios.Funcionario;
 
 public class Pedido {
     private static int contadorId = 1;
@@ -16,7 +15,6 @@ public class Pedido {
     private StatusPedido status;
     private double valor_total; 
     private Departamento departamento;
-    private Funcionario funcionario;
     private Usuario solicitante;
     private ArrayList<Item> itens;
 
@@ -26,7 +24,6 @@ public class Pedido {
         StatusPedido status, 
         double valor_total,
         Departamento departamento,
-        Funcionario funcionario,
         Usuario solicitante,
         ArrayList<Item> itens
         ) {
@@ -36,7 +33,6 @@ public class Pedido {
             this.status = status;
             this.valor_total = valor_total;
             this.departamento = departamento;
-            this.funcionario = funcionario;
             this.solicitante = solicitante;
             this.itens = itens;
             
@@ -56,8 +52,6 @@ public class Pedido {
     public StatusPedido getStatus() { return this.status; }
 
     public void setStatus(StatusPedido newStatus) { this.status = newStatus; }
-
-    public Funcionario getFuncionario() { return this.funcionario; }
     
     public Usuario getSolicitante() { return this.solicitante; }
 
@@ -82,5 +76,13 @@ public class Pedido {
     }
 
     public Departamento getDepartamento() { return departamento; }
+
+
+    @Override
+    public String toString() {
+        return "Pedido [id=" + id + ", data_pedido=" + data_pedido + ", data_conclusao=" + data_conclusao + ", status="
+                + status + ", valor_total=" + valor_total + ", departamento=" + departamento + ", solicitante="
+                + solicitante + ", itens=" + itens.toString() + "]";
+    }
     
 }
