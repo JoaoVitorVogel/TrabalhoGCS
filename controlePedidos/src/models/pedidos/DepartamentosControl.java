@@ -12,6 +12,17 @@ public class DepartamentosControl {
       return this.todosDepartamentos;
   }
 
+    public Departamento getDepartamentoByName(String nome) {
+        for(Departamento d : todosDepartamentos){
+            if(d.getNome().equals(nome)){
+                return d;
+            }
+        }
+        return null;
+    }
+
+    
+
   public Departamento addDepartamento(Departamento d) {
     this.todosDepartamentos.add(d);
     return d;

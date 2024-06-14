@@ -41,5 +41,11 @@ public class Item {
     private void atualizaValorTotal() {
         this.valor_total = this.quantidade * this.valor_un;
     }
+
+    @Override
+    public String toString() {
+        return "Item [descricao=" + descricao + ", quantidade=" + quantidade + ", valor_un=" + valor_un
+                + ", valor_total=" + valor_total + "]";
+    }
     
 }

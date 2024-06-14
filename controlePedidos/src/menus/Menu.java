@@ -6,19 +6,42 @@ import models.usuarios.administradores.*;
 import models.usuarios.funcionarios.*;
 import java.io.*;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Menu {
     private UsuariosControl usuarios;
     private DepartamentosControl departamentos;
     private SistemaControlePedidos pedidos;
+    private Usuario usuarioLogado;
 
     public Menu() {
-        usuarios = new UsuariosControl();
         departamentos = new DepartamentosControl();
+        usuarios = new UsuariosControl();
         pedidos = new SistemaControlePedidos();
+        usuarioLogado = new Usuario(null, null, null);
 
-        this.criarUsuarios();
+        
         this.criarDepartamentos();
+        this.criarUsuarios();
+    }
+
+    public void selectUsuario(int numeroSelecionado){
+        int indexCount = 1;
+        for (Usuario u : usuarios.getTodosUsuarios()) {
+            if(numeroSelecionado == indexCount){
+                usuarioLogado = u;
+            }
+            indexCount++;
+        }
+
+        System.out.println("Usuario logado: ");
+        System.out.println(usuarioLogado.toString());
+    }
+
+    public void cadastraPedido(double valor, ArrayList<Item> itens){
+
+        pedidos.registrarPedido(valor, usuarioLogado.getDepartamento(), usuarioLogado, itens);
+
     }
 
     public void showTodosUsuarios() {
@@ -87,14 +110,9 @@ public class Menu {
 
     public void showPedidos() {
         System.out.println("Mostrando todos pedidos:");
-        int indexCount = 1;
+
         for (Pedido p : pedidos.getPedidos()) {
-            StringBuilder builder = new StringBuilder("[");
-            builder.append(indexCount);
-            builder.append("] ");
-            builder.append(p.toString());
-            System.out.println(builder.toString());
-            indexCount++;
+            System.out.println(p.toString());
         }
     }
 
@@ -114,18 +132,24 @@ public class Menu {
             String token1 = tokens[0]; //nome
             String token2 = tokens[1]; //departamento
 
+            Departamento selectedDepartamento = departamentos.getDepartamentoByName(token2);
+
+            Double valor = selectedDepartamento.getValorMax();
+
+            Departamento departamento = new Departamento(token2, valor);
+
             Usuario usuario;
 
             // instancia usuarios com tokens como atributos;
             if (token2.equals("Administrador")) {
-                usuario = new Administrador(token1, token2);
+                usuario = new Administrador(token1, departamento);
 
             } else {
-                usuario = new Funcionario(token1, token2);
+                usuario = new Funcionario(token1, departamento);
             }
 
             usuarios.addUsuario(usuario);
-         }
+        }
            scanner.close();
     
         } catch (FileNotFoundException e) {
@@ -159,16 +183,6 @@ public class Menu {
         }
     }
 
-    public void showOptions() {
-        System.out.println("\n[1] Mostrar todos funcionarios");
-        System.out.println("[2] Mostrar todos administradores");
-        System.out.println("[3] Mostrar todos usuarios");
-        System.out.println("[4] Ver departamentos");
-        System.out.println("[5] Ver pedidos");
-        System.out.println();
-        System.out.println("[0] Sair da aplicacao\n");
-    }
-
     public void showLogo() {
         System.out.println("\r\n" + //
                         "░▒▓██████████████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓███████▓▒░░▒▓███████▓▒░  \r\n" + //
@@ -181,10 +195,5 @@ public class Menu {
                         "                                                                          \r\n" + //
                         "                                                                          \r\n" + //
                         "");
-    }
-
-    public void clearConsole() {
-        //System.out.print("\033[H\033[2J");  
-        //System.out.flush();  
     }
 }
